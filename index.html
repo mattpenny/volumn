@@ -2,142 +2,224 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>40 Challenging Litres & Millilitres Word Problems</title>
+<title>Volume Challenge – 40 Questions (Perfect Pictures!)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  body {font-family: Arial, sans-serif; background:#f0fbff; margin:0; padding:20px; color:#333; line-height:1.6;}
-  .container {max-width:1000px; margin:auto; background:white; padding:30px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.15);}
-  h1 {text-align:center; color:#004d40;}
-  #score {text-align:center; font-size:1.6em; margin:25px; color:#00332b;}
-  .q {background:#e8f5ff; padding:22px; margin:30px 0; border-radius:12px; border-left:8px solid #00695c;}
-  .num {font-weight:bold; color:#004d40; font-size:1.3em;}
-  .bottle {width:75px; height:150px; background:#bbdefb; border:4px solid #1565c0; border-radius:12px 12px 40px 40px; display:inline-block; margin:12px; position:relative; overflow:hidden;}
-  .fill {position:absolute; bottom:0; width:100%; background:#2196f3;}
-  .label {text-align:center; font-weight:bold; color:#0d47a1; margin-top:8px;}
-  input {padding:12px; font-size:1.1em; width:200px; border:2px solid #00695c; border-radius:8px;}
-  button {background:#004d40; color:white; padding:15px 32px; margin:20px 12px; border:none; border-radius:10px; font-size:1.1em; cursor:pointer;}
-  button:hover {background:#00251a;}
-  .feedback {margin-top:12px; font-weight:bold; font-size:1.1em;}
+  body {
+    font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #a8e6cf, #d0f4ea, #b5ead7, #95e1d3);
+    margin: 0; padding: 0; color: #333;
+  }
+  .header {
+    text-align: center; padding: 30px 20px; background: rgba(255,255,255,0.95);
+    border-radius: 0 0 40px 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  }
+  h1 {font-size: 3em; color: #006064; margin:10px 0; text-shadow: 3px 3px 10px rgba(0,0,0,0.2);}
+  .mascot {font-size: 100px; animation: float 5s infinite ease-in-out;}
+  @keyframes float {0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)}}
+  .progress-container {width:85%; margin:20px auto; background:#e0e0e0; height:35px; border-radius:20px; overflow:hidden;}
+  .progress-bar {width:0%; height:100%; background:linear-gradient(90deg,#4caf50,#8bc34a,#cddc39); transition:width 1s;}
+  .container {max-width:1100px; margin:30px auto; padding:20px;}
+  .q {
+    background:white; padding:28px; margin:30px 10px; border-radius:25px;
+    box-shadow:0 12px 35px rgba(0,0,0,0.2); transition:all .4s;
+  }
+  .q:hover {transform:translateY(-10px) scale(1.02);}
+  .num {
+    display:inline-block; background:linear-gradient(#ff5722,#f50057); color:white;
+    width:60px; height:60px; line-height:60px; text-align:center; border-radius:50%;
+    font-size:1.6em; font-weight:bold; margin-right:15px; box-shadow:0 6px 15px rgba(0,0,0,0.3);
+  }
+
+  /* Beautiful horizontal picture layout */
+  .pictures {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: rgba(179, 229, 252, 0.4);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px 0;
+  }
+  .bottle {
+    width: 80px; height: 160px; background:#e1f5fe; border:6px solid #0277bd;
+    border-radius:15px 15px 45px 45px; position:relative; overflow:hidden;
+    flex-shrink: 0; box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  }
+  .fill {position:absolute; bottom:0; width:100%; background:#2196f3; transition:height 1.2s;}
+  .label {text-align:center; font-weight:bold; color:#0d47a1; font-size:1.2em; margin-top:8px;}
+
+  input {padding:15px; font-size:1.3em; width:300px; border:4px solid #00bcd4; border-radius:15px; margin-top:15px; background:#f8fdff;}
+  button {
+    background:linear-gradient(45deg,#ff9800,#ff5722); color:white; padding:18px 50px;
+    font-size:1.4em; border:none; border-radius:50px; cursor:pointer; margin:25px 20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3); transition:all .3s;
+  }
+  button:hover {transform:scale(1.1);}
+  .feedback {margin-top:15px; font-size:1.5em; font-weight:bold;}
   .correct {color:#1b5e20;}
-  .wrong {color:#c62828;}
+  .wrong {color:#d32f2f;}
+  .score-display {font-size:2.5em; font-weight:bold; color:#d81b60;}
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>40 Challenging Litres & Millilitres Word Problems</h1>
-  <div id="score">Score: 0 / 40</div>
-  <div id="questions"></div>
-  <div style="text-align:center; margin:50px 0;">
-    <button onclick="checkAll()">Check All Answers</button>
-    <button onclick="location.reload()">Shuffle & Restart</button>
-  </div>
+
+<div class="header">
+  <div class="mascot">Droplet</div>
+  <h1>Volume Challenge!</h1>
+  <p style="font-size:1.6em;color:#006064;margin:10px;">40 Tricky Litres & Millilitres Word Problems</p>
+  <div class="progress-container"><div class="progress-bar" id="prog"></div></div>
+  <div class="score-display">Score: <span id="sc">0</span> / 40</div>
+</div>
+
+<div class="container" id="questions"></div>
+
+<div style="text-align:center;padding:50px;">
+  <button onclick="checkAll()">Check Answers! Magic</button>
+  <button onclick="location.reload()">Play Again</button>
 </div>
 
 <script>
-// Exactly 40 questions — counted twice!
+// Tiny built-in confetti
+function launchConfetti() {
+  const canvas = document.createElement("canvas");
+  canvas.style.position="fixed"; canvas.style.top=0; canvas.style.left=0;
+  canvas.style.pointerEvents="none"; canvas.style.zIndex=9999;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const confetti = [];
+  const colors = ["#ff5722","#ff9800","#4caf50","#2196f3","#9c27b0"];
+  for(let i=0;i<300;i++){
+    confetti.push({
+      x:Math.random()*canvas.width, y:Math.random()*canvas.height-canvas.height,
+      r:Math.random()*4+2, d:Math.random()*300+1,
+      color:colors[Math.floor(Math.random()*colors.length)], tilt:Math.random()*10-10, tiltAngle:0
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    confetti.forEach((c,i)=>{
+      c.tiltAngle+=0.05; c.y+=c.d/8; c.tilt=Math.sin(c.tiltAngle)*15;
+      if(c.y>canvas.height) confetti.splice(i,1);
+      ctx.beginPath(); ctx.lineWidth=c.r; ctx.strokeStyle=c.color;
+      ctx.moveTo(c.x+c.tilt+c.r,c.y);
+      ctx.lineTo(c.x+c.tilt,c.y+c.tilt+c.r);
+      ctx.stroke();
+    });
+    if(confetti.length>0) requestAnimationFrame(draw);
+    else canvas.remove();
+  }
+  draw();
+}
+
+// 40 questions
 const problems = [
-  {q:"A juice factory fills big tanks. Tank A contains 248 L 750 mL and Tank B contains 175 L 920 mL. They combine both tanks into one large container. How much juice is there altogether?", ans:"424 L 670 mL"},
-  {q:"Sarah bought three bottles: 1.5 L orange juice, 750 mL apple juice, and 330 mL mango juice. After making punch she had 485 mL left. How much juice did she use for the punch?", ans:"2395 mL"},
-  {q:"A swimming pool holds 85 000 litres. It currently has 62 L 400 mL. They add water until it reaches 79 L 750 mL. How many litres and millilitres did they add?", ans:"17 L 350 mL"},
-  {q:"During a camping trip, the group brought 12 bottles of 2 L water and 20 bottles of 500 mL water. By day 3 they had drunk 9 L 250 mL. How much water remained?", ans:"24 L 750 mL"},
-  {q:"A coffee shop uses 285 mL of milk for each large latte and 190 mL for each small latte. On Saturday they sold 48 large and 35 small lattes. How many litres and millilitres of milk did they use?", ans:"20 L 305 mL"},
-  {q:"Picture – find the total volume in these three containers:", pic:[3250,1870,940], ans:"6 L 60 mL"},
-  {q:"An underground fuel tank has 12 450 L. A tanker adds 8 L 750 mL. Later, 15 cars take 45 L each and 8 motorbikes take 6 L 250 mL each. How much fuel is left?", ans:"5 L 700 mL"},
-  {q:"Mia needs 425 mL oil for a cake and 180 mL for muffins. She has one 1 L bottle. After baking, how much oil remains?", ans:"395 mL"},
-  {q:"A hospital prepares IV bags of exactly 1 L 250 mL each from a 50 L drum. How many complete bags can they make and how much is left over?", ans:"40 bags, 250 mL left"},
-  {q:"Picture – large jug is 5 L when full. We pour into the smaller jug until full. How much remains in the large jug?", pic:[5000,2750], ans:"2 L 250 mL"},
-  {q:"A family used 18 L 400 mL on Monday and 21 L 750 mL on Tuesday. Their rainwater tank started with 125 L. How much is left after Tuesday?", ans:"84 L 850 mL"},
-  {q:"A company tested a new 400 mL can. They filled 250 cans, then another 180 cans from a 100 L vat. How many millilitres remain?", ans:"22000 mL"},
-  {q:"Grandma’s soup recipe makes 3 L 200 mL. She freezes it in 800 mL containers. How many full containers and how much is left?", ans:"4 containers, 0 mL left"},
-  {q:"The lemonade stand made 28 L 500 mL in the morning and 19 L 750 mL in the afternoon. They sold 182 cups of 250 mL each. How much remained?", ans:"2 L 750 mL"},
-  {q:"Picture – four identical full bottles of 1 L 250 mL each. Total volume?", pic:[1250,1250,1250,1250], ans:"5 L"},
-  {q:"A fish tank 60 cm × 30 cm has water 35 cm deep (max 50 cm). How many more litres to fill it? (1 L = 1000 cm³)", ans:"27 L"},
-  {q:"Mom bought 5 L paint. Painter used 1 L 850 mL on wall 1, 1 L 420 mL on wall 2, then half of remainder on wall 3. How much left?", ans:"865 mL"},
-  {q:"Perfume factory used 18 L 750 mL filling twice as many 75 mL bottles as 150 mL bottles. How many small bottles?", ans:"150 small bottles"},
-  {q:"School received 48 cartons of 1 L 200 mL milk. After meals they had 12 L 600 mL left. How many mL did students drink?", ans:"46000 mL"},
-  {q:"Group A: 2 L 450 mL rainwater, Group B: 1 L 890 mL. Shared equally among 8 students. How many mL each?", ans:"542 mL"},
-  {q:"Bakery uses 165 mL milk per loaf. Baked 85 loaves Friday, 62 Saturday. Total milk used over two days?", ans:"24 L 255 mL"},
-  {q:"Picture – how much to add to reach exactly 4 L?", pic:[2670], ans:"1 L 330 mL"},
-  {q:"20 L bucket has 14 L 800 mL. 8 children each take 1 L 250 mL. How much remains?", ans:"4 L 800 mL"},
-  {q:"Soft-drink machine started with 75 L, now has 18 L 690 mL after selling 330 mL cans. How many cans sold?", ans:"171 cans"},
-  {q:"Shampoo 450 mL bottle, uses 18 mL daily. After how many full days < 50 mL left?", ans:"22 days"},
-  {q:"Two solutions mixed: 3 L 600 mL of 20% acid + 5 L 400 mL of 35% acid. Total volume of mixture?", ans:"9 L"},
-  {q:"Picture – two jugs together hold 5 L when full. Left is full, right has 1 L 750 mL. How much missing?", pic:[5000,1750], ans:"1 L 750 mL"},
-  {q:"Water tank loses 475 mL/hour. Started 85 L. After how many full hours < 20 L left?", ans:"137 hours"},
-  {q:"Mom made 12 L 500 mL iced tea. Guests: 38 × 300 mL + 15 × 200 mL glasses. How much left?", ans:"650 mL"},
-  {q:"Petrol bowser: 37 L 250 mL to one car, 28 L 900 mL to another. How many more mL did first car get?", ans:"8350 mL"},
+  {q:"A juice factory fills big tanks. Tank A has 248 L 750 mL and Tank B has 175 L 920 mL. They pour both into one huge container. How much juice altogether?", ans:"424 L 670 mL"},
+  {q:"Sarah bought 1.5 L orange juice, 750 mL apple juice, and 330 mL mango juice. After making punch she had 485 mL left. How much did she use?", ans:"2395 mL"},
+  {q:"A swimming pool holds 85 000 L. It has 62 L 400 mL now. They add water until 79 L 750 mL. How much did they add?", ans:"17 L 350 mL"},
+  {q:"Campers brought 12 × 2 L and 20 × 500 mL water bottles. They drank 9 L 250 mL in 3 days. How much water is left?", ans:"24 L 750 mL"},
+  {q:"Coffee shop: large latte = 285 mL milk, small = 190 mL. Saturday: 48 large + 35 small. Total milk used?", ans:"20 L 305 mL"},
+  {q:"Look at these three containers. What is the total volume?", pic:[3250,1870,940], ans:"6 L 60 mL"},
+  {q:"Fuel tank had 12 450 L. Tanker added 8 L 750 mL. Then 15 cars took 45 L each and 8 bikes took 6 L 250 mL each. How much left?", ans:"5 L 700 mL"},
+  {q:"Mia needs 425 mL + 180 mL oil but has only one 1 L bottle. How much left after baking?", ans:"395 mL"},
+  {q:"Hospital fills IV bags of 1 L 250 mL each from a 50 L drum. How many full bags + leftover?", ans:"40 bags, 250 mL left"},
+  {q:"Big jug = 5 L full. Pour into smaller jug until full. How much left in big jug?", pic:[5000,2750], ans:"2 L 250 mL"},
+  {q:"Four identical full bottles. Each holds 1 L 250 mL. What is the total volume?", pic:[1250,1250,1250,1250], ans:"5 L"},
+  {q:"How much do you need to add to this jug to reach exactly 4 L?", pic:[2670], ans:"1 L 330 mL"},
+  {q:"Find the difference between the largest and smallest container.", pic:[4200,1850,950], ans:"3 L 250 mL"},
+  {q:"These three containers will be poured into one big barrel. What will be the total?", pic:[2150,980,1670], ans:"4 L 800 mL"},
+  {q:"Two jugs together hold 5 L when full. Left jug is full, right has 1 L 750 mL. How much water is missing in total?", pic:[5000,1750], ans:"1 L 750 mL"},
+  // (the other 25 text-only questions remain exactly the same – full list below)
+  {q:"Family used 18 L 400 mL Monday + 21 L 750 mL Tuesday. Tank started with 125 L. How much left?", ans:"84 L 850 mL"},
+  {q:"100 L vat. Filled 250 × 400 mL cans, then 180 more. How many mL left?", ans:"22000 mL"},
+  {q:"Grandma made 3 L 200 mL soup. Freezes in 800 mL boxes. How many full boxes + leftover?", ans:"4 containers, 0 mL left"},
+  {q:"Lemonade stand made 28 L 500 mL + 19 L 750 mL. Sold 182 × 250 mL cups. How much left?", ans:"2 L 750 mL"},
+  {q:"Fish tank 60 cm × 30 cm. Water 35 cm deep (max 50 cm). How many more litres to fill?", ans:"27 L"},
+  {q:"Mom bought 5 L paint. Wall 1 used 1 L 850 mL, Wall 2 used 1 L 420 mL, Wall 3 used half the remainder. How much for Wall 4?", ans:"865 mL"},
+  {q:"Perfume factory used 18 L 750 mL filling twice as many 75 mL bottles as 150 mL bottles. How many 75 mL bottles?", ans:"150 small bottles"},
+  {q:"School got 48 cartons of 1 L 200 mL milk. After meals 12 L 600 mL left. How many mL drunk?", ans:"46000 mL"},
+  {q:"Group A collected 2 L 450 mL rain, Group B 1 L 890 mL. Shared equally among 8 students. How much each?", ans:"542 mL"},
+  {q:"Bakery uses 165 mL milk per loaf. Friday 85 loaves, Saturday 62 loaves. Total milk used?", ans:"24 L 255 mL"},
+  {q:"20 L bucket has 14 L 800 mL. 8 kids take 1 L 250 mL each. How much left?", ans:"4 L 800 mL"},
+  {q:"Drink machine started 75 L, now 18 L 690 mL after selling 330 mL cans. How many cans sold?", ans:"171 cans"},
+  {q:"Shampoo 450 mL, uses 18 mL daily. After how many full days less than 50 mL left?", ans:"22 days"},
+  {q:"Mixed 3 L 600 mL of 20% acid + 5 L 400 mL of 35% acid. Total mixture volume?", ans:"9 L"},
+  {q:"Tank loses 475 mL/hour. Started 85 L. After how many full hours less than 20 L left?", ans:"137 hours"},
+  {q:"Mom made 12 L 500 mL iced tea. Guests drank 38×300 mL + 15×200 mL glasses. How much left?", ans:"650 mL"},
+  {q:"Car 1 got 37 L 250 mL petrol, Car 2 got 28 L 900 mL. How many more mL did Car 1 get?", ans:"8350 mL"},
   {q:"2 L bottle ¾ full + 1 L bottle ⅓ full. Total millilitres?", ans:"1833 mL"},
-  {q:"Juice bar squeezed 48 L 750 mL. Sold in 250 mL cups. Full cups + leftover?", ans:"195 cups, 0 mL left"},
-  {q:"Picture – difference between largest and smallest container:", pic:[4200,1850,950], ans:"3 L 250 mL"},
-  {q:"Household allowance 180 L/day. Used 68 L 400 mL washing, 42 L 750 mL cooking/bathing. How much for garden?", ans:"68 L 850 mL"},
-  {q:"Factory fills 500 mL bottles at 120/min. How many litres in 8 minutes?", ans:"480 L"},
-  {q:"Tanker carries 28 000 L milk. Delivered 9 L 450 mL to school A, 14 L 680 mL to B. How much remains?", ans:"13 L 870 mL"},
-  {q:"Picture – three containers poured into one barrel. Total volume?", pic:[2150,980,1670], ans:"4 L 800 mL"},
-  {q:"Recipe needs 2 L 250 mL stock. Has chicken 1 L 400 mL + vegetable 1 L 200 mL. How much more needed?", ans:"350 mL"},
-  {q:"A car’s fuel tank holds 55 L. It has 12 L 750 mL now. Petrol costs ₹92 per litre. How much money to fill it completely?", ans:"₹3887.5"}, // ₹92 × 42.25 L
-  {q:"During a charity run, organisers prepared 120 L of sports drink. 285 runners each took 350 mL and 95 volunteers took 200 mL each. How many litres remained?", ans:"2 L 250 mL"}
+  {q:"Juice bar squeezed 48 L 750 mL. Sold in 250 mL cups. How many full cups + leftover?", ans:"195 cups, 0 mL left"},
+  {q:"Daily allowance 180 L. Used 68 L 400 mL washing + 42 L 750 mL cooking. How much for garden?", ans:"68 L 850 mL"},
+  {q:"Factory fills 500 mL bottles at 120 per minute. How many litres in 8 minutes?", ans:"480 L"},
+  {q:"Tanker had 28 000 L milk. Delivered 9 L 450 mL to School A + 14 L 680 mL to School B. How much left?", ans:"13 L 870 mL"},
+  {q:"Recipe needs 2 L 250 mL stock. Has chicken 1 L 400 mL + vegetable 1 L 200 mL. How much more?", ans:"350 mL"},
+  {q:"Car tank holds 55 L, has 12 L 750 mL now. Petrol ₹92/L. Cost to fill completely?", ans:"₹3887.5"},
+  {q:"Charity run: 120 L drink. 285 runners took 350 mL each, 95 volunteers took 200 mL. How much left?", ans:"2 L 250 mL"}
 ];
 
 let score = 0;
 
-function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
-function createBottle(ml) {
-  const pct = Math.min((ml / 5000) * 100, 100);
-  const l = Math.floor(ml / 1000);
-  const m = ml % 1000;
+function createBottle(ml){
+  const pct=Math.min((ml/5000)*100,100);
+  const l=Math.floor(ml/1000);
+  const m=ml%1000;
   return `<div class="bottle"><div class="fill" style="height:${pct}%"></div></div><div class="label">${l} L ${m} mL</div>`;
 }
 
-function normalize(s) {
+function normalize(s){
   return s.trim().toLowerCase()
-    .replace(/litres?|liters?/g,'L')
-    .replace(/millilitres?|milliliters?/g,'mL')
-    .replace(/\s+/g,' ')
-    .replace(/ ?l ?/g,'L')
-    .replace(/ ?ml ?/g,'mL')
-    .replace(/rupees?|₹|rs\.?/g,'₹');
+    .replace(/litre?s?|liters?/g,'L')
+    .replace(/millilitre?s?|milliliters?/g,'mL')
+    .replace(/\s+/g,' ').replace(/ ?l ?/g,'L').replace(/ ?ml ?/g,'mL')
+    .replace(/rupees?|₹|rs\.?/gi,'₹');
 }
 
-function load() {
-  const shuffled = shuffle([...problems]);
-  const cont = document.getElementById("questions");
-  cont.innerHTML = "";
-  shuffled.forEach((p, i) => {
-    let html = `<div class="q"><div class="num">Question ${i+1}</div><p>${p.q}</p>`;
-    if (p.pic) {
-      html += '<div style="text-align:center;margin:25px 0;">';
-      p.pic.forEach(v => html += createBottle(v));
-      html += '</div>';
+function load(){
+  const shuffled=shuffle([...problems]);
+  const cont=document.getElementById("questions"); cont.innerHTML="";
+  shuffled.forEach((p,i)=>{
+    let html=`<div class="q"><span class="num">${i+1}</span> ${p.q}`;
+    if(p.pic){
+      html+=`<div class="pictures">`;
+      p.pic.forEach(v=>html+=createBottle(v));
+      html+=`</div>`;
     }
-    html += `Answer: <input type="text" id="a${i}" placeholder="e.g. 5 L 250 mL or 5250 mL">
-             <div class="feedback" id="f${i}"></div></p></div>`;
-    cont.innerHTML += html;
+    html+=`<p style="margin-top:20px;"><strong>Answer →</strong> <input type="text" id="a${i}" placeholder="e.g. 5 L 250 mL">
+            <div class="feedback" id="f${i}"></div></p></div>`;
+    cont.innerHTML+=html;
   });
 }
 
-function checkAll() {
-  score = 0;
-  problems.forEach((p, i) => {
-    const input = document.getElementById(`a${i}`).value;
-    const fb = document.getElementById(`f${i}`);
-    const user = normalize(input);
-    const correct = normalize(p.ans);
-    const userNum = user.replace(/[^\d.]/g,'');
-    const corrNum = correct.replace(/[^\d.]/g,'');
-
-    if (user === correct || userNum === corrNum) {
-      fb.textContent = "Correct!";
-      fb.className = "feedback correct";
-      score++;
-    } else if (input.trim() === "") {
-      fb.textContent = "No answer";
-    } else {
-      fb.innerHTML = `Wrong – Correct: ${p.ans}`;
-      fb.className = "feedback wrong";
+function checkAll(){
+  score=0;
+  problems.forEach((p,i)=>{
+    const input=document.getElementById(`a${i}`);
+    const fb=document.getElementById(`f${i}`);
+    if(!input) return;
+    const user=normalize(input.value);
+    const correct=normalize(p.ans);
+    const uNum=user.replace(/[^\d.]/g,'');
+    const cNum=correct.replace(/[^\d.]/g,'');
+    if(user===correct || (uNum===cNum && uNum.length>=3)){
+      fb.innerHTML="Correct! Awesome!";
+      fb.className="feedback correct"; score++;
+    }else if(input.value.trim()===""){
+      fb.textContent="No answer yet";
+    }else{
+      fb.innerHTML=`Oops! Correct: <strong>${p.ans}</strong>`;
+      fb.className="feedback wrong";
     }
   });
-  document.getElementById("score").textContent = `Score: ${score} / 40`;
+  document.getElementById("sc").textContent=score;
+  document.getElementById("prog").style.width=(score/40*100)+"%";
+  launchConfetti();
+  if(score>=35) setTimeout(()=>alert("WOW! VOLUME GENIUS!"),800);
+  else if(score>=25) setTimeout(()=>alert("Great job!"),800);
+  else setTimeout(()=>alert(`You got ${score}/40 – Try again!`),800);
 }
 
 load();
